@@ -1,36 +1,49 @@
 {
   "name": "serverless-side-rendering-vue-nuxt",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sample project for using Nuxt.js to create a server-side rendered Vue.js app on AWS Lambda and AWS API Gateway. Can easily integrate with your own API or 3rd party APIs such as headless CMS, e-commerce or serverless architecture.",
   "main": "index.js",
   "engines": {
     "node": "8.10"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nuxt",
-    "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "deploy": "npm run build && sls deploy",
-    "start-server": "npm run build && node app.js",
-    "start-sls": "npm run build && sls offline start"
+    "lambda-serve": "netlify-lambda serve lambda-src",
+    "build": "NODE_ENV=production nuxt build && netlify-lambda build functions",
+    "dev": "NODE_ENV=development concurrently \"webpack-dev-server --content-base src/\" \"npm run lambda-serve\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge"
+  },
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-core": "^7.0.0-bridge.0",
     "body-parser": "^1.18.3",
-    "express": "^4.16.3",
+    "express": "^4.16.4",
     "helmet": "^3.13.0",
     "mongoose": "^5.1.7",
-    "nuxt": "^1.4.2",
-    "serverless-apigw-binary": "^0.4.4",
-    "serverless-http": "^1.6.0"
+    "netlify-lambda": "^1.1.1",
+    "nuxt": "^1.4.5",
+    "serverless-http": "^1.9.0"
   },
   "devDependencies": {
+    "serverless-apigw-binary": "^0.4.4",
     "serverless-domain-manager": "^2.6.0",
-    "serverless-offline": "^3.25.7"
-  }
+    "serverless-offline": "^3.25.7",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https:/bitbucket.org:cofinity/serverless-nuxt.git"
+  },
+  "bugs": {
+    "url": "https://bitbucket.org:cofinity/serverless-nuxt.git"
+  },
+  "homepage": "https://bitbucket.org:cofinity/serverless-nuxt.git#readme"
 }

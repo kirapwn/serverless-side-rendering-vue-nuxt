@@ -4,8 +4,8 @@ provider:
   name: aws
   runtime: nodejs8.10
   stage: ${self:custom.secrets.NODE_ENV}
-  region: us-east-1
-  environment: 
+  region: eu-central-1
+  environment:
     NODE_ENV: ${self:custom.secrets.NODE_ENV}
 
 functions:
@@ -35,5 +35,5 @@ custom:
     basePath: ''
     stage: ${self:custom.secrets.NODE_ENV}
     createRoute53Record: true
-    # endpointType: 'regional'
+    endpointType: 'regional'
     # if the ACM certificate is created in a region except for `'us-east-1'` you need `endpointType: 'regional'`

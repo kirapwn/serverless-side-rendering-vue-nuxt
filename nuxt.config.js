@@ -17,7 +17,16 @@ module.exports = {
     gzip: false
   },
   router: {
-    base: `/`
+    base: `/`,
+      extendRoutes(routes) {
+          routes.push(
+              {
+                  name: 'contact',
+                  path: '/contact',
+                  component: './client/pages/contact.vue'
+              }
+          )
+      }
   },
   dev: false
 }
